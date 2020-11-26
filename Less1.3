@@ -1,6 +1,6 @@
-1) Создал несколько каталогов и скопировал туда утилиты(cам интепретатор(bash) cp, ls) salt@salt:~/Less1.3$ mkdir bin lib lib64 && cp /bin/bash bin/ && cp /bin/ls bin/ && cp /bin/cp bin/
+1) РЎРѕР·РґР°Р» РЅРµСЃРєРѕР»СЊРєРѕ РєР°С‚Р°Р»РѕРіРѕРІ Рё СЃРєРѕРїРёСЂРѕРІР°Р» С‚СѓРґР° СѓС‚РёС‚РёС‚С‹ РёРЅС‚РµРїСЂРµС‚Р°С‚РѕСЂ bash, cp, ls) salt@salt:~/Less1.3$ mkdir bin lib lib64 && cp /bin/bash bin/ && cp /bin/ls bin/ && cp /bin/cp bin/
 
-2) Посмотреть необходимые библиотеки для корректной работы приложений: salt@salt:~$ { ldd /bin/bash && ldd /bin/ls && ldd /bin/cp; } | sort | uniq -c
+2) РџРѕСЃРјРѕС‚СЂРµС‚СЊ РЅРµРѕР±С…РѕРґРёРјС‹Рµ Р±РёР±Р»РёРѕС‚РµРєРё РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ РїСЂРёР»РѕР¶РµРЅРёР№: salt@salt:~$ { ldd /bin/bash && ldd /bin/ls && ldd /bin/cp; } | sort | uniq -c
  linux-vdso.so.1 (0x00007ffc03fc7000)
       1         /lib64/ld-linux-x86-64.so.2 (0x00007f31e7301000)
       1         /lib64/ld-linux-x86-64.so.2 (0x00007fad81139000)
@@ -24,12 +24,12 @@
       1         linux-vdso.so.1 (0x00007ffd7efd2000)
       1         linux-vdso.so.1 (0x00007fff6aa96000)
 
-3) Создадим каталог внутри(Я просто забыл про него)
+3) РЎРѕР·РґР°РґРёРј РєР°С‚Р°Р»РѕРі РІРЅСѓС‚СЂРё(РЇ РїСЂРѕСЃС‚Рѕ Р·Р°Р±С‹Р» РїСЂРѕ РЅРµРіРѕ)
 salt@salt:~/Less1.3$ mkdir -p lib/x86_64-linux-gnu
 
-Для Lib:
+Р”Р»СЏ Lib:
 salt@salt:~/Less1.3$ cp /lib/x86_64-linux-gnu/libacl.so.1 /lib/x86_64-linux-gnu/libattr.so.1 /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libdl.so.2 /lib/x86_64-linux-gnu/libpcre2-8.so.0 /lib/x86_64-linux-gnu/libpthread.so.0 /lib/x86_64-linux-gnu/libselinux.so.1 /lib/x86_64-linux-gnu/libtinfo.so.6 lib/x86_64-linux-gnu
-Для Lib64:
+Р”Р»СЏ Lib64:
 cp /lib64/ld-linux-x86-64.so.2 lib64/
 salt@salt:~$ sudo chroot Less1.3/
 bash-5.0#ls --help (done)
