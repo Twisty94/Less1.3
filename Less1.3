@@ -1,0 +1,36 @@
+1) Создал несколько каталогов и скопировал туда утилиты(cам интепретатор(bash) cp, ls) salt@salt:~/Less1.3$ mkdir bin lib lib64 && cp /bin/bash bin/ && cp /bin/ls bin/ && cp /bin/cp bin/
+
+2) Посмотреть необходимые библиотеки для корректной работы приложений: salt@salt:~$ { ldd /bin/bash && ldd /bin/ls && ldd /bin/cp; } | sort | uniq -c
+ linux-vdso.so.1 (0x00007ffc03fc7000)
+      1         /lib64/ld-linux-x86-64.so.2 (0x00007f31e7301000)
+      1         /lib64/ld-linux-x86-64.so.2 (0x00007fad81139000)
+      1         /lib64/ld-linux-x86-64.so.2 (0x00007fd598a3a000)
+      1         libacl.so.1 => /lib/x86_64-linux-gnu/libacl.so.1 (0x00007fad810d4000)
+      1         libattr.so.1 => /lib/x86_64-linux-gnu/libattr.so.1 (0x00007fad810cc000)
+      1         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f31e70b7000)
+      1         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fad80eda000)
+      1         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd5986de000)
+      1         libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f31e7021000)
+      1         libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fad80e44000)
+      1         libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fd5988d0000)
+      1         libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007f31e7027000)
+      1         libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007fad80e4a000)
+      1         libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f31e6ffe000)
+      1         libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fad80e1f000)
+      1         libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007f31e72a9000)
+      1         libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007fad810df000)
+      1         libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007fd5988d6000)
+      1         linux-vdso.so.1 (0x00007ffd4dfb5000)
+      1         linux-vdso.so.1 (0x00007ffd7efd2000)
+      1         linux-vdso.so.1 (0x00007fff6aa96000)
+
+3) Создадим каталог внутри(Я просто забыл про него)
+salt@salt:~/Less1.3$ mkdir -p lib/x86_64-linux-gnu
+
+Для Lib:
+salt@salt:~/Less1.3$ cp /lib/x86_64-linux-gnu/libacl.so.1 /lib/x86_64-linux-gnu/libattr.so.1 /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/libdl.so.2 /lib/x86_64-linux-gnu/libpcre2-8.so.0 /lib/x86_64-linux-gnu/libpthread.so.0 /lib/x86_64-linux-gnu/libselinux.so.1 /lib/x86_64-linux-gnu/libtinfo.so.6 lib/x86_64-linux-gnu
+Для Lib64:
+cp /lib64/ld-linux-x86-64.so.2 lib64/
+salt@salt:~$ sudo chroot Less1.3/
+bash-5.0#ls --help (done)
+bash-5.0#cp --help (done) 
